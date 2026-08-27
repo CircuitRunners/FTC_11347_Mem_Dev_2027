@@ -3,11 +3,11 @@ package competition;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Config.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Config.MecanumDrivebase;
+import org.firstinspires.ftc.teamcode.Config.IntakeSubsystem;
 
 @TeleOp(name = "Mecanum & Intake TeleOp", group = "TeleOp")
-public class MecanumTeleOp extends OpMode {
+public class teleops extends OpMode {
 
     private MecanumDrivebase drivebase;
     private IntakeSubsystem intake;
@@ -23,11 +23,11 @@ public class MecanumTeleOp extends OpMode {
 
     @Override
     public void loop() {
-        double forward = -gamepad1.left_stick_y;
-        double right   = gamepad1.left_stick_x;
-        double rotate  = gamepad1.right_stick_x;
+        double x = gamepad1.left_stick_x;
+        double y = -gamepad1.left_stick_y;
+        double rotation = gamepad1.right_stick_x;
 
-        drivebase.drive(forward, right, rotate);
+        drivebase.drive(x, y, rotation);
 
         double intakePower = gamepad1.right_trigger - gamepad1.left_trigger;
 
@@ -36,11 +36,5 @@ public class MecanumTeleOp extends OpMode {
         } else {
             intake.stop();
         }
-
-        telemetry.addData("Drive Forward", forward);
-        telemetry.addData("Drive Right", right);
-        telemetry.addData("Drive Rotate", rotate);
-        telemetry.addData("Intake Power", intakePower);
-        telemetry.update();
     }
 }
