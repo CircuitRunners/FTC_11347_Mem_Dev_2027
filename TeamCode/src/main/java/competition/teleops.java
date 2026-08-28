@@ -23,11 +23,11 @@ public class teleops extends OpMode {
 
     @Override
     public void loop() {
-        double x = gamepad1.left_stick_x;
-        double y = -gamepad1.left_stick_y;
+        double forward = gamepad1.left_stick_y;
+        double right = -gamepad1.left_stick_x;
         double rotation = gamepad1.right_stick_x;
 
-        drivebase.drive(x, y, rotation);
+        drivebase.drive(forward, right, rotation);
 
         double intakePower = gamepad1.right_trigger - gamepad1.left_trigger;
 
